@@ -1,0 +1,19 @@
+AI Documentation - STAT 159 HW3, James Wang
+Tool: Codex (OpenAI), using the model selected in the app.
+
+Q1. Do I need a Makefile for this package?
+A1. HW3 does not require one. Use pyproject.toml for installation metadata
+    and Python dependencies. Make rules describe how to rebuild outputs.
+
+Q2. How should the opponent age field be handled?
+A2. Convert an eight-digit birth date to age using the source match date.
+    Keep decimal ages as given. Warn about missing ages and omit them in plots.
+
+Q3. How can tests avoid downloading data every time?
+A3. Use the small male/female examples from HW3 and mock HTTP responses.
+    Block network access during pytest so an accidental request fails.
+
+Other use: Codex drafted the package, tests and README, helped inspect the
+course materials, corrected cleaning/plotting issues, ran checks and managed
+Git commits and the branch merge. The reflection draft uses my stated
+uncertainty about Makefiles and concrete changes in this repository.
