@@ -1,0 +1,2 @@
+include ai_documentation.txt
+recursive-include tests *.py *.js

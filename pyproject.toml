@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tennis_career"
+version = "0.2.0"
+description = "Tennis Abstract career matches and age plots"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["pandas>=2", "matplotlib>=3.7", "requests>=2.31"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+include = ["tennis_career*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
