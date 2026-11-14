@@ -15,5 +15,5 @@ A3. Use the small male/female examples from HW3 and mock HTTP responses.
 
 Other use: Codex drafted the package, tests and README, helped inspect the
 course materials, corrected cleaning/plotting issues, ran checks and managed
-Git commits and the branch merge. The reflection draft uses my stated
-uncertainty about Makefiles and concrete changes in this repository.
+Git commits and the branch merge. The reflection draft relates the project's
+data-cleaning decisions to the course material.
