@@ -1,5 +1,5 @@
 AI Documentation - STAT 159 HW3, James Wang
-Tool: Codex (OpenAI), using the model selected in the app.
+Tool: Codex (OpenAI), model GPT-6 Astra.
 
 Q1. Do I need a Makefile for this package?
 A1. HW3 does not require one. Use pyproject.toml for installation metadata
