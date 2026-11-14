@@ -20,7 +20,9 @@ def _prepare_plot(matches):
     if not valid.all():
         warnings.warn("Matches with missing or invalid ages are omitted.",
                       UserWarning, stacklevel=2)
-    return matches.assign(**numeric).loc[valid]
+    data = matches.copy()
+    data[columns] = numeric
+    return data.loc[valid]
 
 
 def _format_axes(ax, player_name):

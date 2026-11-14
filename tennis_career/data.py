@@ -41,9 +41,9 @@ def _find_player(player_name):
         raise ValueError("Enter a full player name, such as 'Serena Williams'.")
     query = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", player_name)
     query = " ".join(query.split()).lower()
-    source = _download(f"{_BASE_URL}/cgi-bin/search.cgi?q={quote(query)}")
+    url = f"{_BASE_URL}/cgi-bin/search.cgi?q={quote(query)}"
     try:
-        results = json.loads(source)
+        results = json.loads(_download(url))
         matches = [item for item in results
                    if _normalize_name(item["name"]) == _normalize_name(player_name)]
     except (ValueError, TypeError, KeyError) as error:
@@ -67,8 +67,7 @@ def _get_profile(player):
 
 def _read_matches(source, variable):
     """Read a JSON array assignment and reject malformed match rows."""
-    pattern = r"\bvar\s+" + re.escape(variable) + r"\s*=\s*"
-    match = re.search(pattern, source)
+    match = re.search(rf"\bvar\s+{re.escape(variable)}\s*=\s*", source)
     if match is None:
         raise ValueError(f"Missing {variable} in Tennis Abstract data.")
     try:
@@ -107,10 +106,10 @@ def _get_opponent_ages(values, dates):
     """WTA uses birth dates; ATP archives may already contain ages."""
     values = values.astype(str)
     is_birthday = values.str.fullmatch(r"\d{8}")
-    ages = pd.to_numeric(values.where(~is_birthday), errors="coerce")
+    ages = pd.to_numeric(values, errors="coerce").astype(float)
     birthdays = pd.to_datetime(
-        values.where(is_birthday), format="%Y%m%d", errors="coerce")
-    ages = ages.where(~is_birthday, (dates - birthdays).dt.days / _DAYS_PER_YEAR)
+        values[is_birthday], format="%Y%m%d", errors="coerce")
+    ages.loc[is_birthday] = (dates[is_birthday] - birthdays).dt.days / _DAYS_PER_YEAR
     return ages.where(ages.ge(0)).replace(float("inf"), float("nan"))
 
 

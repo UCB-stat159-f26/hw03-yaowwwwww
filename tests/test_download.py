@@ -36,7 +36,8 @@ def _player_responses(tour="W", archive=True):
 
 
 @pytest.mark.parametrize("name", ["serena williams", "Serena Williams",
-                                 "SerenaWilliams"])
+                                 "SerenaWilliams", "SERENA WILLIAMS",
+                                 "  Serena   Williams  "])
 def test_name_variants_and_provenance(monkeypatch, name):
     download = Mock(side_effect=_player_responses())
     monkeypatch.setattr(requests, "get", download)
