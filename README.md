@@ -8,26 +8,42 @@ in different colors.
 
 ## Run
 
-From this repository's folder:
+Open a terminal in this repository's folder. On macOS or Linux, run:
 
 ```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
 python -m pip install '.[test]'
 python -m pytest -q
 ```
 
+`.[test]` installs this package and its test tools. The `.venv` folder stays
+on your computer and is ignored by Git.
+
 Tests use the small samples from [HW3](https://stat159.berkeley.edu/fall-2026/hws/hw03/hw03.html)
 and mocked requests. They do not access the website.
 
-To make a plot, run this in Python:
+Start Python in the same terminal:
+
+```bash
+python
+```
+
+Then run:
 
 ```python
 import matplotlib.pyplot as plt
 from tennis_career import get_career_matches, plot_career_matches
 
 data = get_career_matches("Serena Williams")
+print(data.head())
 plot_career_matches(data)
 plt.show()
 ```
+
+Change the name to try another player, such as `"Rafael Nadal"`.
+Downloading data needs internet access. Type `exit()` to leave Python.
+Next time, activate the environment with `source .venv/bin/activate`.
 
 ## Reflection
 
