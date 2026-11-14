@@ -39,3 +39,8 @@ make each step easier to follow. I want more practice checking one match by hand
 and comparing it with the test result.
 
 AI use is recorded in [ai_documentation.txt](ai_documentation.txt).
+
+## License
+
+Package code is available under the [MIT License](LICENSE). Course materials
+and Tennis Abstract data retain their original terms.
