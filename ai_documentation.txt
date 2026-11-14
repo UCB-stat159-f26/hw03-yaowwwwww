@@ -13,7 +13,42 @@ Q3. How can tests avoid downloading data every time?
 A3. Use the small male/female examples from HW3 and mock HTTP responses.
     Block network access during pytest so an accidental request fails.
 
-Other use: Codex drafted the package, tests and README, helped inspect the
+Q4. Can you give me an example of installing and using the package?
+A4. Create an environment, install the package, then open Python.
+    In the terminal:
+        python3.11 -m venv .venv
+        source .venv/bin/activate
+        python -m pip install git+https://github.com/UCB-stat159-f26/hw03-yaowwwwww.git
+        python
+
+    In Python:
+        import matplotlib.pyplot as plt
+        from tennis_career import get_career_matches, plot_career_matches
+
+        data = get_career_matches("Serena Williams")
+        print(data.head())
+        plot_career_matches(data)
+        plt.show()
+
+Q5. Can you show me how to write and run a small test?
+A5. Pick fixed input, calculate the expected answer, and compare the result.
+    This example checks an opponent's age without downloading anything.
+    Save as test_age.py:
+        import pandas as pd
+        import pytest
+        from tennis_career.data import _get_opponent_ages
+
+        def test_opponent_age():
+            dates = pd.Series(pd.to_datetime(["1995-10-30"]))
+            birthdays = pd.Series(["19770119"])
+            ages = _get_opponent_ages(birthdays, dates)
+            assert ages.iloc[0] == pytest.approx(6858 / 365.25)
+
+    Run in the terminal, in the folder containing test_age.py:
+        python -m pip install pytest
+        python -m pytest -q test_age.py
+
+Other use: Codex drafted the README, helped inspect the
 course materials, corrected cleaning/plotting issues, ran checks and managed
 Git commits and the branch merge. Codex rephrased my reflection notes about
-reuse, environments, offline tests and player-name handling.
+reuse and environments.
