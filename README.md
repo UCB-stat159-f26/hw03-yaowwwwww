@@ -47,12 +47,18 @@ Next time, activate the environment with `source .venv/bin/activate`.
 
 ## Reflection
 
-The same column needs different treatment in the two sample files: one has
-opponent birth dates and the other already has ages. This is a useful reminder
-for me to check the data before trusting a plot. Small functions, as discussed
-in the [clear-code lecture](https://stat159.berkeley.edu/fall-2026/lectures/23-code/23-clear-code-slides.html),
-make each step easier to follow. I want more practice checking one match by hand
-and comparing it with the test result.
+Creating a library and building a wheel make code easier for many people to
+reuse, so I need to take responsibility for how it works. This connects to the
+[Python package lecture](https://stat159.berkeley.edu/fall-2026/lectures/26-packages3/26-python-packages.pdf).
+I need to declare the dependencies and check installation in a fresh virtual
+environment, instead of assuming the package will run on another computer.
+The environment itself stays local; others recreate it from the instructions.
+
+I also learned that offline tests help separate code errors from temporary
+network problems. Player names need cleaning too: lowercasing handles case
+differences, and a regular expression splits names like `SerenaWilliams`
+before searching. The sample files also use different age formats, so I need
+to check what the data means before trusting the plot.
 
 AI use is recorded in [ai_documentation.txt](ai_documentation.txt).
 
